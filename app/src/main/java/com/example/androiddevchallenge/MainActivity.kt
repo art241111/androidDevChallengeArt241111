@@ -20,56 +20,43 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.androiddevchallenge.navigation.MainNavigationVM
 import com.example.androiddevchallenge.ui.screens.DefaultScreenBody
-import com.example.androiddevchallenge.ui.screens.ScreenViewPets
+import com.example.androiddevchallenge.ui.screens.NavigationAppScreen
+import com.example.androiddevchallenge.ui.screens.viewPets.ScreenViewPets
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import com.example.androiddevchallenge.ui.theme.green500
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var navigationVM: MainNavigationVM
+
     @ExperimentalAnimationApi
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
+            navigationVM = viewModel()
+
             MyTheme {
-                    MyApp()
+                MyApp(navigationVM)
             }
         }
     }
+
+    override fun onBackPressed() {
+        if (navigationVM.onBackButtonClick()) {
+            super.onBackPressed()
+        }
+    }
 }
+
 
 // Start building your app here!
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @Composable
-fun MyApp() {
-    DefaultScreenBody{
-        ScreenViewPets()
-    }
-}
-
-@ExperimentalAnimationApi
-@ExperimentalFoundationApi
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        MyApp()
-    }
-}
-
-@ExperimentalAnimationApi
-@ExperimentalFoundationApi
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        MyApp()
-    }
+fun MyApp(navigationVM: MainNavigationVM) {
+    NavigationAppScreen(navigationVM)
 }

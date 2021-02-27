@@ -1,4 +1,4 @@
-package com.example.androiddevchallenge.ui.screens
+package com.example.androiddevchallenge.ui.screens.viewPets
 
 import androidx.compose.animation.*
 import androidx.compose.animation.fadeIn
@@ -16,7 +16,6 @@ import com.example.androiddevchallenge.data.Pet
 import com.example.androiddevchallenge.ui.elements.screenViewPets.PetCard
 import com.example.androiddevchallenge.ui.elements.screenViewPets.ScrollToTopButton
 import com.example.androiddevchallenge.ui.screens.petDetail.ScreenViewPetDetail
-import com.example.androiddevchallenge.ui.screens.viewPets.ViewPetsVM
 import kotlinx.coroutines.launch
 
 
@@ -24,7 +23,8 @@ import kotlinx.coroutines.launch
 @ExperimentalFoundationApi
 @Composable
 fun ScreenViewPets(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    goDescription: (Pet) -> Unit,
 ) {
     Box(modifier) {
         val petsVM = viewModel<ViewPetsVM>()
@@ -45,7 +45,7 @@ fun ScreenViewPets(
                 items(pets.value!!) { pet ->
                     PetCard(
                         modifier = Modifier.clickable {
-                           petEdit.value = pet
+                            goDescription(pet)
                         },
                         pet = pet
                     )
@@ -70,14 +70,16 @@ fun ScreenViewPets(
             )
         }
 
-        AnimatedVisibility(
-            visible = petEdit.value != null,
-            enter = expandVertically(),
-            exit = shrinkOut(),
-        ) {
-            ScreenViewPetDetail(
-                pet = petEdit
-            )
-        }
+//        AnimatedVisibility(
+//            visible = petEdit.value != null,
+//            enter = expandVertically(),
+//            exit = shrinkOut(),
+//        ) {
+//            ScreenViewPetDetail(
+//                pet = petEdit
+//            ) {
+//                navigationApp.back()
+//            }
+//        }
     }
 }

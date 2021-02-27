@@ -9,14 +9,12 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.R
@@ -27,30 +25,31 @@ import com.example.androiddevchallenge.ui.theme.green500
 @Composable
 fun ScreenViewPetDetail(
     modifier: Modifier = Modifier,
-    pet: MutableState<Pet?>
+    pet: Pet?,
+    navigateBack: () -> Unit
 ) {
     Surface {
         Box(modifier = modifier.fillMaxSize()) {
-            if (pet.value != null) {
+            if (pet != null) {
                 Column(
                     modifier = Modifier.verticalScroll(ScrollState(0))
                 ) {
                     Image(
                         modifier = Modifier.fillMaxWidth().height(200.dp),
-                        painter = painterResource(id = pet.value!!.image),
+                        painter = painterResource(id = pet.image),
                         contentDescription = "${stringResource(id = R.string.pet_list_pet_name)} " +
-                                pet.value!!.name,
+                                pet.name,
                         contentScale = ContentScale.Crop
                     )
 
                     TextHeader(
                         modifier = Modifier.fillMaxWidth(),
-                        text = pet.value!!.name
+                        text = pet.name
                     )
 
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = "${pet.value!!.year} years",
+                        text = "${pet.year} years",
                         style = MaterialTheme.typography.h2,
                         textAlign = TextAlign.Center
                     )
@@ -58,7 +57,7 @@ fun ScreenViewPetDetail(
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
-                        text = pet.value!!.description,
+                        text = pet.description,
                         textAlign = TextAlign.Justify,
                         fontSize = 16.sp
                     )
@@ -68,7 +67,7 @@ fun ScreenViewPetDetail(
             ButtonBack(
                 modifier = Modifier.align(Alignment.TopStart).padding(20.dp),
                 onClick = {
-                    pet.value = null
+                    navigateBack()
                 },
             )
 
