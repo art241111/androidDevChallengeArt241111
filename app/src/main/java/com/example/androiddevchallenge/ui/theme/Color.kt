@@ -17,10 +17,9 @@ package com.example.androiddevchallenge.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val green200_alpha80 = Color(113, 209, 131, 0xBB)
+val green200 = Color(113, 209, 131)
 
-val green200_alpha80 = Color(113,209,131, 0xBB)
-val green200 = Color(113,209,131)
-
-val green500 = Color(82,197,104)
-val green700 = Color(40,112,53)
+val green500 = Color(82, 197, 104)
+val green700 = Color(40, 112, 53)
 val teal200 = Color(0x3DB862)

@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-
 // Start building your app here!
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
