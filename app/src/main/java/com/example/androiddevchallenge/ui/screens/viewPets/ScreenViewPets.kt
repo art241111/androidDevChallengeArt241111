@@ -1,23 +1,21 @@
 package com.example.androiddevchallenge.ui.screens
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.*
 import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.androiddevchallenge.data.getPetList
+import com.example.androiddevchallenge.data.Pet
 import com.example.androiddevchallenge.ui.elements.screenViewPets.PetCard
 import com.example.androiddevchallenge.ui.elements.screenViewPets.ScrollToTopButton
+import com.example.androiddevchallenge.ui.screens.petDetail.ScreenViewPetDetail
 import com.example.androiddevchallenge.ui.screens.viewPets.ViewPetsVM
 import kotlinx.coroutines.launch
 
@@ -35,6 +33,8 @@ fun ScreenViewPets(
         val listState = rememberLazyListState()
         val scope = rememberCoroutineScope()
 
+        val petEdit: MutableState<Pet?> = remember { mutableStateOf(null) }
+
         LazyVerticalGrid(
             modifier = Modifier.fillMaxWidth(),
             cells = GridCells.Adaptive(200.dp),
@@ -43,7 +43,12 @@ fun ScreenViewPets(
         ) {
             if (pets.value != null) {
                 items(pets.value!!) { pet ->
-                    PetCard(pet = pet)
+                    PetCard(
+                        modifier = Modifier.clickable {
+                           petEdit.value = pet
+                        },
+                        pet = pet
+                    )
                 }
             }
         }
@@ -62,6 +67,16 @@ fun ScreenViewPets(
                         listState.scrollToItem(0)
                     }
                 }
+            )
+        }
+
+        AnimatedVisibility(
+            visible = petEdit.value != null,
+            enter = expandVertically(),
+            exit = shrinkOut(),
+        ) {
+            ScreenViewPetDetail(
+                pet = petEdit
             )
         }
     }
