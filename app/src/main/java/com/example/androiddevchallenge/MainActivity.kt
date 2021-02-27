@@ -23,9 +23,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.androiddevchallenge.navigation.MainNavigationVM
-import com.example.androiddevchallenge.ui.screens.DefaultScreenBody
 import com.example.androiddevchallenge.ui.screens.NavigationAppScreen
-import com.example.androiddevchallenge.ui.screens.viewPets.ScreenViewPets
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {

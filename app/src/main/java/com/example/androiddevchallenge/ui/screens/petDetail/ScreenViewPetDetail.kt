@@ -22,6 +22,11 @@ import com.example.androiddevchallenge.data.Pet
 import com.example.androiddevchallenge.ui.elements.screenViewPetDetail.TextHeader
 import com.example.androiddevchallenge.ui.theme.green500
 
+/**
+ * A screen that shows the details of the animal.
+ *
+ *  @author Artem Gerasimov (artem241120@gmail.com)
+ */
 @Composable
 fun ScreenViewPetDetail(
     modifier: Modifier = Modifier,

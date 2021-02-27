@@ -15,10 +15,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.androiddevchallenge.data.Pet
 import com.example.androiddevchallenge.ui.elements.screenViewPets.PetCard
 import com.example.androiddevchallenge.ui.elements.screenViewPets.ScrollToTopButton
-import com.example.androiddevchallenge.ui.screens.petDetail.ScreenViewPetDetail
 import kotlinx.coroutines.launch
 
-
+/**
+ * A screen that shows a list of all the animals.
+ *
+ *  @author Artem Gerasimov (artem241120@gmail.com)
+ */
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @Composable
@@ -32,8 +35,6 @@ fun ScreenViewPets(
 
         val listState = rememberLazyListState()
         val scope = rememberCoroutineScope()
-
-        val petEdit: MutableState<Pet?> = remember { mutableStateOf(null) }
 
         LazyVerticalGrid(
             modifier = Modifier.fillMaxWidth(),
@@ -69,17 +70,5 @@ fun ScreenViewPets(
                 }
             )
         }
-
-//        AnimatedVisibility(
-//            visible = petEdit.value != null,
-//            enter = expandVertically(),
-//            exit = shrinkOut(),
-//        ) {
-//            ScreenViewPetDetail(
-//                pet = petEdit
-//            ) {
-//                navigationApp.back()
-//            }
-//        }
     }
 }

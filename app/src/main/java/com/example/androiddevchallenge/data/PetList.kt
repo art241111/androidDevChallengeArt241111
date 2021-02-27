@@ -2,6 +2,11 @@ package com.example.androiddevchallenge.data
 
 import com.example.androiddevchallenge.R
 
+/**
+ * Creating a list of animals.
+ *
+ *  @author Artem Gerasimov (artem241120@gmail.com)
+ */
 fun getPetList(): List<Pet> {
     return listOf(
         Pet(
@@ -95,7 +100,7 @@ fun getPetList(): List<Pet> {
             description = getDescription(),
         ),
 
-    )
+        )
 }
 
 private fun getName(): String {

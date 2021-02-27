@@ -13,6 +13,12 @@ import com.example.androiddevchallenge.navigation.ShowScreen
 import com.example.androiddevchallenge.ui.screens.petDetail.ScreenViewPetDetail
 import com.example.androiddevchallenge.ui.screens.viewPets.ScreenViewPets
 
+/**
+ * The initial graphic screen, which is used for
+ * navigation depending on the state in [NavigationAppVM].
+ *
+ * @author Artem Gerasimov (artem241120@gmail.com)
+ */
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Composable

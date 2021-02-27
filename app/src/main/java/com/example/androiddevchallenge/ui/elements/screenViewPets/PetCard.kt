@@ -19,6 +19,11 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.Pet
 import com.example.androiddevchallenge.ui.theme.green200_alpha80
 
+/**
+ * A card that displays the characteristics of the animal.
+ *
+ *  @author Artem Gerasimov (artem241120@gmail.com)
+ */
 @Composable
 internal fun PetCard(
     modifier: Modifier = Modifier,
